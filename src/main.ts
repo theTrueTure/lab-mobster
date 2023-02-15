@@ -21,3 +21,14 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 `;
 
 setupCounter(document.querySelector<HTMLButtonElement>('#counter')!);
+
+const getMobName = () => {
+  fetch('https://lab-mobster-backend-production.up.railway.app/mobs')
+    .then(res => { res.json(); })
+    .then(data => {
+      console.log(data, typeof data);
+      return data;
+    });
+};
+
+getMobName();
