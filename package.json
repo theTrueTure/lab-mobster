@@ -1,22 +1,18 @@
 {
   "name": "lab-mobster",
-  "version": "1.0.0",
-  "description": "lab for a full app",
-  "main": "index.js",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "test": "test"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/theTrueTure/lab-mobster.git"
-  },
-  "keywords": [
-    "mobster"
-  ],
-  "author": "Amber",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/theTrueTure/lab-mobster/issues"
-  },
-  "homepage": "https://github.com/theTrueTure/lab-mobster#readme"
+  "devDependencies": {
+    "@tsconfig/node16": "^1.0.3",
+    "@types/node": "^18.13.0",
+    "eslint-config-salt-typescript": "^1.0.0",
+    "typescript": "^4.9.3",
+    "vite": "^4.1.0"
+  }
 }
