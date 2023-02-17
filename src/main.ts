@@ -1,34 +1,35 @@
 import './style.css';
-import typescriptLogo from './typescript.svg';
-import { setupCounter } from './counter';
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`;
+// This is how we got the data, but i couldnt access to the backend properly
+// so the "mobName.mobs.mobs"and "members.mobMembers...." maybe they are not correct
+// but you can check in the inspect
+// I add some style(not pretty) to the page in case you dont have timee today!
+// the fetch of the mob will only work with one mob because we didnt implement mobs/id
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!);
+const getMob = async () => {
+	const getMobData = await fetch(
+		'https://lab-mobster-backend-production.up.railway.app/mobs'
+	);
+	const mobName = await getMobData.json();
+	console.log(mobName);
 
-const getMobName = () => {
-  fetch('https://lab-mobster-backend-production.up.railway.app/mobs')
-    .then(res => { res.json(); })
-    .then(data => {
-      console.log(data, typeof data);
-      return data;
-    });
+	const getMembersData = await fetch(
+		'https://lab-mobster-backend-production.up.railway.app/mobs/1676464991028/members'
+	);
+	const members = await getMembersData.json();
+	console.log(members.mobMembers);
+
+	document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
+  <section class="main-section"
+    <h2 class="main-section__main-title">${mobName.mobs.mobs[1]}</h2>
+    <ul class="main-section__list">
+      <li class="main-section__list__element">${members.mobMembers.membersList[0]}</li>
+      <li class="main-section__list__element">${members.mobMembers.membersList[1]}</li>
+      <li class="main-section__list__element">${members.mobMembers.membersList[2]}</li>
+      <li class="main-section__list__element">${members.mobMembers.membersList[3]}</li>
+    </ul>
+  </section>
+  `;
 };
 
-getMobName();
+getMob();
