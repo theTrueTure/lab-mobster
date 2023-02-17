@@ -1,11 +1,5 @@
 import './style.css';
 
-// This is how we got the data, but i couldnt access to the backend properly
-// so the "mobName.mobs.mobs"and "members.mobMembers...." maybe they are not correct
-// but you can check in the inspect
-// I add some style(not pretty) to the page in case you dont have timee today!
-// the fetch of the mob will only work with one mob because we didnt implement mobs/id
-
 const getMob = async () => {
   const getMobData = await fetch(
     'https://lab-mobster-backend-production.up.railway.app/mobs',
